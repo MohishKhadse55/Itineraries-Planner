@@ -21,6 +21,7 @@ itinerariesRouter.get('/', async (request, response) => {
 
 itinerariesRouter.get('/:city', async (request, response) => {
   const cityName = request.params.city
+  console.log(typeof cityName)
   const city = await City.findOne({ name: cityName })
   const itinerariesOf = await Itinerary
     .find({ city: city._id })

@@ -8,36 +8,6 @@ usersRouter.get('/:id', async (request, response) => {
 
   const user = await User
     .findById(id)
-    .populate({
-      path: 'favs',
-      populate: {
-        populate: 'user',
-        populate: {
-          path: 'itinerary',
-          populate: {
-            path: 'city'
-          }
-        }
-      }
-    })
-    .populate({
-      path: 'favs',
-      populate: {
-        populate: 'user'
-      }
-    })
-    .populate({
-      path: 'favs',
-      populate: {
-        path: 'activities'
-      }
-    })
-    .populate({
-      path: 'favs',
-      populate: {
-        path: 'city'
-      }
-    })
 
   response.json(user)
 })
@@ -74,8 +44,9 @@ usersRouter.put('/:id', async (request, response) => {
     response.status(400).json({ error: 'User or itinerary not exist' })
   }
 
-  itinerary.favs = itinerary.favs.filter(u => String(u) !== String(user._id))
-  user.favs = user.favs.filter(i => String(i) !== String(itinerary._id))
+  // itinerary.favs = itinerary.favs.filter(u => String(u) !== String(user._id))
+  // user.favs = user.favs.filter(i => String(i) !== String(itinerary._id))
+  user.username = request.body.username
 
   await itinerary.save()
   const updatedUser = await user.save()

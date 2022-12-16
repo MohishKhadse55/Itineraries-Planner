@@ -43,7 +43,7 @@ countriesRouter.put('/:id', async (request, response) => {
     cities: country.cities
   }
 
-  const updatedCountry = await Country.findByIdAndUpdate(request.para.id, newCountry, { new: true })
+  const updatedCountry = await Country.findByIdAndUpdate(request.params.id, newCountry, { new: true })
   response.json(updatedCountry)
 })
 

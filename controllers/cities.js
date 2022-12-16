@@ -22,7 +22,7 @@ citiesRouter.post('/', async (request, response) => {
 
   const country = await Country
     .findOne({ name: body.country })
-
+  console.log(country)
   if (country) {
     const city = new City({
       name: body.name,
@@ -70,7 +70,10 @@ citiesRouter.delete('/:id', async (request, response) => {
   }
 
   await City.findByIdAndDelete(id)
-  response.status(204).end()
+  response.status(201).json({
+    status:"success",
+
+  })
 })
 
 citiesRouter.put('/:id', async (request, response) => {
