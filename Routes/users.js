@@ -44,8 +44,6 @@ usersRouter.put('/:id', async (request, response) => {
     response.status(400).json({ error: 'User or itinerary not exist' })
   }
 
-  // itinerary.favs = itinerary.favs.filter(u => String(u) !== String(user._id))
-  // user.favs = user.favs.filter(i => String(i) !== String(itinerary._id))
   user.username = request.body.username
 
   await itinerary.save()

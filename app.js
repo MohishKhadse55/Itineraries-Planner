@@ -35,13 +35,6 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
 
-app.get('/*', (req, res) => {
-  let url = path.join(__dirname, '/', 'build', 'index.html');
-  if (!url.startsWith('/app/')) // we're on local windows
-    url = url.substring(1);
-  res.sendFile(url);
-});
-
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
