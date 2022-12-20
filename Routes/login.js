@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const loginRouter = require('express').Router()
 const User = require('../models/user')
-const { OAuth2Client } = require('google-auth-library')
-const client = new OAuth2Client(process.env.CLIENT_ID)
+
 
 loginRouter.post('/', async (request, response) => {
   const body = request.body
